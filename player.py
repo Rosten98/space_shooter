@@ -30,7 +30,7 @@ class Player(pygame.sprite.Sprite):
             self.rect.move_ip(self.speed, 0)
             self.speed = 5
         if pressed_keys[K_SPACE]:
-            print(pressed_keys[K_SPACE])
+            # print(pressed_keys[K_SPACE])
             self.speed *= 3
 
         # Keep player on the screen
@@ -43,5 +43,5 @@ class Player(pygame.sprite.Sprite):
         if self.rect.bottom >= consts.SCREEN_HEIGHT:
             self.rect.bottom = consts.SCREEN_HEIGHT
 
-        
+
         # self.mask = pygame.mask.from_surface(self.surf)
