@@ -52,10 +52,8 @@ screen = pygame.display.set_mode((consts.SCREEN_WIDTH, consts.SCREEN_HEIGHT))
 ADDENEMY = pygame.USEREVENT + 1
 pygame.time.set_timer(ADDENEMY, 250)
 
-# Instantiate player. Right now, this is just a rectangle.
 player = Player()
 enemies = []
-
 clock = pygame.time.Clock()
 
 running = True
