@@ -26,7 +26,7 @@ screen = pygame.display.set_mode((consts.SCREEN_WIDTH, consts.SCREEN_HEIGHT))
 
 # Create a custom event for adding a new enemy
 ADDENEMY = pygame.USEREVENT + 1
-pygame.time.set_timer(ADDENEMY, 250)
+pygame.time.set_timer(ADDENEMY, 500)
 
 player = Player()
 enemies = []
@@ -34,6 +34,8 @@ clock = pygame.time.Clock()
 
 running = True
 while running:
+
+    # Check events in game
     for event in pygame.event.get():
         if event.type == KEYDOWN:
             if event.key == K_ESCAPE:
@@ -45,9 +47,15 @@ while running:
             enemies.append(new_enemy)
 
     screen.fill((0, 0, 0))
+    # Draw background image
     drawBackground()
-
+    # Get last pressed key event
     pressed_keys = pygame.key.get_pressed()
+
+    # Update position of player, enemies and bullets
+    for bullet in player.bullets:
+        bullet.update(pressed_keys)
+        screen.blit(bullet.surf, bullet.rect)
 
     player.update(pressed_keys)
     screen.blit(player.surf, player.rect)
@@ -56,10 +64,12 @@ while running:
         enemy.update()
         screen.blit(enemy.surf, enemy.rect)
 
+    # Check collisions with enemies
     for enemy in enemies:
         if pygame.sprite.collide_mask(player, enemy):
             player.kill()
             running = False
+        # Add if to check collisions with bullets
 
     pygame.display.flip()
     clock.tick(30)

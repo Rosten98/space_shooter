@@ -1,11 +1,13 @@
 import pygame
 import constants as consts
+from bullet import Bullet
 from pygame.locals import (
     K_UP,
     K_DOWN,
     K_LEFT,
     K_RIGHT,
-    K_SPACE
+    K_SPACE,
+    K_LCTRL
 )
 
 class Player(pygame.sprite.Sprite):
@@ -15,6 +17,8 @@ class Player(pygame.sprite.Sprite):
         self.rect = self.surf.get_rect()
         self.mask = pygame.mask.from_surface(self.surf)
         self.speed = 5
+        self.total_bullets = 5
+        self.bullets = [Bullet() for n in range(self.total_bullets)]
 
     def update(self, pressed_keys):
         if pressed_keys[K_UP]:
@@ -32,6 +36,10 @@ class Player(pygame.sprite.Sprite):
         if pressed_keys[K_SPACE]:
             # print(pressed_keys[K_SPACE])
             self.speed *= 3
+        if pressed_keys[K_LCTRL]:
+            if self.total_bullets > 0:
+                self.bullets[self.total_bullets-1].enable_shooting()
+                self.total_bullets -= 1;
 
         # Keep player on the screen
         if self.rect.left < 0:
@@ -42,6 +50,3 @@ class Player(pygame.sprite.Sprite):
             self.rect.top = 0
         if self.rect.bottom >= consts.SCREEN_HEIGHT:
             self.rect.bottom = consts.SCREEN_HEIGHT
-
-
-        # self.mask = pygame.mask.from_surface(self.surf)
