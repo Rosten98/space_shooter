@@ -57,9 +57,8 @@ while running:
     screen.blit(player.surf, player.rect)
 
     for bullet in player.bullets:
-        bullet.update(player.rect)
+        bullet.update(player.rect.copy())
         screen.blit(bullet.surf, bullet.rect)
-
 
     for enemy in enemies:
         enemy.update()
