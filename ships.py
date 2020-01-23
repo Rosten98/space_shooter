@@ -1,37 +1,13 @@
 import pygame
-import random
 import constants as consts
 from player import Player
+from enemy import Enemy
+
 from pygame.locals import (
-    K_UP,
-    K_DOWN,
-    K_LEFT,
-    K_RIGHT,
     K_ESCAPE,
     KEYDOWN,
     QUIT,
-    K_SPACE
 )
-
-class Enemy(pygame.sprite.Sprite):
-    def __init__(self):
-        super(Enemy, self).__init__()
-        self.surf = pygame.image.load('./assets/meteorBrown_big1.png')
-        self.rect = self.surf.get_rect(
-            center=(
-                random.randint(consts.SCREEN_WIDTH + 20, consts.SCREEN_WIDTH + 100),
-                random.randint(0, consts.SCREEN_HEIGHT),
-            )
-        )
-        self.mask = pygame.mask.from_surface(self.surf)
-        self.speed = random.randint(5, 20)
-
-    def update(self):
-        self.rect.move_ip(-self.speed, 0)
-        if self.rect.right < 0:
-            self.kill()
-        screen.blit(self.surf, self.rect)
-        # self.mask = pygame.mask.from_surface(self.surf)
 
 def drawBackground():
     background = pygame.image.load('./assets/blue.png').convert()
@@ -78,6 +54,7 @@ while running:
 
     for enemy in enemies:
         enemy.update()
+        screen.blit(enemy.surf, enemy.rect)
 
     for enemy in enemies:
         if pygame.sprite.collide_mask(player, enemy):
