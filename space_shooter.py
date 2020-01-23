@@ -53,12 +53,13 @@ while running:
     pressed_keys = pygame.key.get_pressed()
 
     # Update position of player, enemies and bullets
-    for bullet in player.bullets:
-        bullet.update(pressed_keys)
-        screen.blit(bullet.surf, bullet.rect)
-
     player.update(pressed_keys)
     screen.blit(player.surf, player.rect)
+
+    for bullet in player.bullets:
+        bullet.update(player.rect)
+        screen.blit(bullet.surf, bullet.rect)
+
 
     for enemy in enemies:
         enemy.update()
