@@ -51,7 +51,7 @@ while running:
     drawBackground()
     # Get last pressed key event
     pressed_keys = pygame.key.get_pressed()
-
+    
     # Update position of player, enemies and bullets
     player.update(pressed_keys)
     screen.blit(player.surf, player.rect)

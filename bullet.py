@@ -11,7 +11,7 @@ class Bullet(pygame.sprite.Sprite):
 
     def update(self, position):
         if self.shoot:
-            self.rect.move_ip(5, 0)
+            self.rect.move_ip(13, 0)
             if self.rect.left > consts.SCREEN_WIDTH:
                 self.kill()
         else:
