@@ -42,9 +42,6 @@ class Player(pygame.sprite.Sprite):
             self.speed = 5
 
         if pressed_keys[K_LCTRL]:
-            print(self.time_bullet)
-            print(pygame.time.get_ticks())
-            print(pygame.time.get_ticks()-self.waiting_time)
             if not self.wait_bullet:
                 if self.total_bullets > 0:
                     self.bullets[self.total_bullets-1].enable_shooting()
