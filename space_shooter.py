@@ -73,6 +73,7 @@ while running:
             running = False
         for bullet in player.bullets:
             if pygame.sprite.collide_mask(bullet, enemy):
+                sound.explosion()
                 enemy.rect.move_ip((0, -1000))
                 bullet.rect.move_ip((0, -1000))
                 # enemy.kill()

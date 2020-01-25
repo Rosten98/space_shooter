@@ -8,5 +8,6 @@ PLAYER_BULLET1 = './assets/images/laserBlue01.png'
 ENEMY_METEOR1 = './assets/images/meteorBrown_big1.png'
 
 # SOUND PATHS
-LASER1_SOUND = './assets/sounds/sfx_laser1.ogg'
+LASER1 = './assets/sounds/sfx_laser1.ogg'
+EXPLOSION = './assets/sounds/explosion.ogg'
 MAIN_THEME = './assets/sounds/main_theme.ogg'

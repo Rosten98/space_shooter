@@ -14,12 +14,13 @@ class Sound():
 
 
     def shoot(self):
-        self.shot = pygame.mixer.Sound(consts.LASER1_SOUND)
+        self.shot = pygame.mixer.Sound(consts.LASER1)
         self.shot.play(0)
 
 
     def explosion(self):
-        pass
+        self.shot = pygame.mixer.Sound(consts.EXPLOSION)
+        self.shot.play(0)
 
     def quit_mixer(self):
         pygame.mixer.stop()
