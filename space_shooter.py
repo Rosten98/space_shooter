@@ -51,13 +51,13 @@ while running:
     drawBackground()
     # Get last pressed key event
     pressed_keys = pygame.key.get_pressed()
-    
+
     # Update position of player, enemies and bullets
     player.update(pressed_keys)
     screen.blit(player.surf, player.rect)
 
     for bullet in player.bullets:
-        bullet.update(player.rect.copy())
+        bullet.update(player.rect.copy(), player.surf.get_size())
         screen.blit(bullet.surf, bullet.rect)
 
     for enemy in enemies:
@@ -69,7 +69,11 @@ while running:
         if pygame.sprite.collide_mask(player, enemy):
             player.kill()
             running = False
-        # Add if to check collisions with bullets
+        for bullet in player.bullets:
+            if pygame.sprite.collide_mask(bullet, enemy):
+                enemy.rect.move_ip((0, -1000))
+                bullet.rect.move_ip((0, -1000))
+                # enemy.kill()
 
     pygame.display.flip()
     clock.tick(30)
