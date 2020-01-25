@@ -5,7 +5,7 @@ import constants as consts
 class Enemy(pygame.sprite.Sprite):
     def __init__(self):
         super(Enemy, self).__init__()
-        self.surf = pygame.image.load('./assets/meteorBrown_big1.png')
+        self.surf = pygame.image.load(consts.ENEMY_METEOR1)
         self.rect = self.surf.get_rect(
             center=(
                 random.randint(consts.SCREEN_WIDTH + 20, consts.SCREEN_WIDTH + 100),

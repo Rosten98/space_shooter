@@ -13,7 +13,7 @@ from pygame.locals import (
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         super(Player, self).__init__()
-        self.surf = pygame.transform.rotate(pygame.image.load('./assets/playerShip1_blue.png'), -90)
+        self.surf = pygame.transform.rotate(pygame.image.load(consts.PLAYER_SHIP1), -90)
         self.rect = self.surf.get_rect()
         self.mask = pygame.mask.from_surface(self.surf)
         self.speed = 5

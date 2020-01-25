@@ -10,7 +10,7 @@ from pygame.locals import (
 )
 
 def drawBackground():
-    background = pygame.image.load('./assets/blue.png').convert()
+    background = pygame.image.load(consts.BG_BLUE).convert()
     bg_w = background.get_width()
     bg_h = background.get_height()
 
@@ -22,7 +22,7 @@ def drawBackground():
             screen.blit(background, (x, y))
 
 pygame.init()
-screen = pygame.display.set_mode((consts.SCREEN_WIDTH, consts.SCREEN_HEIGHT))
+screen = pygame.display.set_mode((consts.SCREEN_WIDTH, consts.SCREEN_HEIGHT), pygame.FULLSCREEN)
 
 # Create a custom event for adding a new enemy
 ADDENEMY = pygame.USEREVENT + 1

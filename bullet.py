@@ -4,7 +4,7 @@ import constants as consts
 class Bullet(pygame.sprite.Sprite):
     def __init__(self):
         super(Bullet, self).__init__()
-        self.surf = pygame.transform.rotate(pygame.image.load('./assets/laserBlue01.png'), -90)
+        self.surf = pygame.transform.rotate(pygame.image.load(consts.PLAYER_BULLET1), -90)
         self.size = self.surf.get_size()
         self.rect = self.surf.get_rect()
         self.mask = pygame.mask.from_surface(self.surf)
