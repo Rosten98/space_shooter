@@ -12,7 +12,7 @@ class Bullet(pygame.sprite.Sprite):
 
     def update(self, position, player_size):
         y = 1
-        position.y += player_size[y] / 2.0 - self.size[1]
+        position.y += player_size[y] / 2.0 - self.size[1] + 5
         if self.shoot:
             self.rect.move_ip(13, 0)
             if self.rect.left > consts.SCREEN_WIDTH:
