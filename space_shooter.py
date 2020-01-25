@@ -56,11 +56,12 @@ while running:
 
     # Update position of player, enemies and bullets
     player.update(pressed_keys)
-    screen.blit(player.surf, player.rect)
 
     for bullet in player.bullets:
         bullet.update(player.rect.copy(), player.surf.get_size())
         screen.blit(bullet.surf, bullet.rect)
+
+    screen.blit(player.surf, player.rect)
 
     for enemy in enemies:
         enemy.update()
