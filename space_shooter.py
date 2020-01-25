@@ -9,17 +9,32 @@ from pygame.locals import (
     QUIT,
 )
 
-def drawBackground():
+def draw_background():
     background = pygame.image.load(consts.BG_BLUE).convert()
     bg_w = background.get_width()
     bg_h = background.get_height()
 
+    # Calculate size of the screen and draw as many backgrounds as needed
     for idx in range(round(consts.SCREEN_WIDTH / bg_w + 1 )):
         x = 0 + bg_w * idx
         screen.blit(background, (x, 0))
         for idx in range(round(consts.SCREEN_HEIGHT / bg_h + 1)):
             y = 0 + bg_h * idx
             screen.blit(background, (x, y))
+
+
+def draw_bullet_counter():
+    bullets_img = pygame.image.load(consts.PLAYER_BULLET1)
+    x = pygame.image.load(consts.X)
+    number = pygame.image.load(consts.NUMBERS[player.total_bullets])
+    bullets_img = pygame.transform.scale(bullets_img, (bullets_img.get_width(), 40))
+    # textsurface = pygame.font.Font(consts.FONT, 25).render(str(player.total_bullets), False, (255, 255, 255))
+    # screen.blit(textsurface,(40,5))
+
+    screen.blit(bullets_img, (0, 0))
+    screen.blit(number, (40, 10))
+    screen.blit(x, (15, 10))
+
 
 pygame.init()
 screen = pygame.display.set_mode((consts.SCREEN_WIDTH, consts.SCREEN_HEIGHT))
@@ -33,6 +48,7 @@ enemies = []
 sound = Sound()
 sound.init_mixer()
 clock = pygame.time.Clock()
+
 
 running = True
 while running:
@@ -50,7 +66,8 @@ while running:
 
     screen.fill((0, 0, 0))
     # Draw background image
-    drawBackground()
+    draw_background()
+    draw_bullet_counter()
     # Get last pressed key event
     pressed_keys = pygame.key.get_pressed()
 
