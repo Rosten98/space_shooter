@@ -2,7 +2,7 @@ import pygame
 import constants as consts
 from player import Player
 from enemy import Enemy
-
+from sound import Sound
 from pygame.locals import (
     K_ESCAPE,
     KEYDOWN,
@@ -22,7 +22,7 @@ def drawBackground():
             screen.blit(background, (x, y))
 
 pygame.init()
-screen = pygame.display.set_mode((consts.SCREEN_WIDTH, consts.SCREEN_HEIGHT), pygame.FULLSCREEN)
+screen = pygame.display.set_mode((consts.SCREEN_WIDTH, consts.SCREEN_HEIGHT))
 
 # Create a custom event for adding a new enemy
 ADDENEMY = pygame.USEREVENT + 1
@@ -30,6 +30,8 @@ pygame.time.set_timer(ADDENEMY, 500)
 
 player = Player()
 enemies = []
+sound = Sound()
+sound.init_mixer()
 clock = pygame.time.Clock()
 
 running = True
@@ -77,3 +79,5 @@ while running:
 
     pygame.display.flip()
     clock.tick(30)
+
+sound.quit_mixer()

@@ -9,3 +9,4 @@ ENEMY_METEOR1 = './assets/images/meteorBrown_big1.png'
 
 # SOUND PATHS
 LASER1_SOUND = './assets/sounds/sfx_laser1.ogg'
+MAIN_THEME = './assets/sounds/main_theme.ogg'

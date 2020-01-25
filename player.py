@@ -1,6 +1,7 @@
 import pygame
 import constants as consts
 from bullet import Bullet
+from sound import Sound
 from pygame.locals import (
     K_UP,
     K_DOWN,
@@ -22,6 +23,7 @@ class Player(pygame.sprite.Sprite):
         self.waiting_time = 200 # miliseconds
         self.total_bullets = 5
         self.bullets = [Bullet() for n in range(self.total_bullets)]
+        self.sound = Sound()
 
     def update(self, pressed_keys):
 
@@ -44,6 +46,7 @@ class Player(pygame.sprite.Sprite):
         if pressed_keys[K_LCTRL]:
             if not self.wait_bullet:
                 if self.total_bullets > 0:
+                    self.sound.shoot()
                     self.bullets[self.total_bullets-1].enable_shooting()
                     self.total_bullets -= 1;
                     self.wait_bullet = True
