@@ -7,11 +7,11 @@ PLAYER_SHIP1 = './assets/images/playerShip1_blue.png'
 PLAYER_SHIP3 = './assets/images/playerShip3_blue.png'
 PLAYER_BULLET1 = './assets/images/laserBlue01.png'
 
-ENEMY_METEOR1 = './assets/images/meteorBrown_big1.png'
-ENEMY_METEOR2 = './assets/images/meteorBrown_big2.png'
-ENEMY_METEOR3 = './assets/images/meteorBrown_med1.png'
-ENEMY_METEOR4 = './assets/images/meteorBrown_med3.png'
-ENEMY_METEOR5 = './assets/images/meteorBrown_small2.png'
+ENEMY_METEOR1 = './assets/images/enemies/meteorBrown_big1.png'
+ENEMY_METEOR2 = './assets/images/enemies/meteorBrown_big2.png'
+ENEMY_METEOR3 = './assets/images/enemies/meteorBrown_med1.png'
+ENEMY_METEOR4 = './assets/images/enemies/meteorBrown_med3.png'
+ENEMY_METEOR5 = './assets/images/enemies/meteorBrown_small2.png'
 METEORS = [ENEMY_METEOR1, ENEMY_METEOR2, ENEMY_METEOR3, ENEMY_METEOR1, ENEMY_METEOR2, ENEMY_METEOR4, ENEMY_METEOR5]
 
 X = './assets/images/UI/numeralX.png'
