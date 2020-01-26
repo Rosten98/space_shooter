@@ -4,11 +4,7 @@ import constants as consts
 class Sound():
     def __init__(self):
         self.shot = pygame.mixer.Sound(consts.LASER1)
-
-
-    def init_mixer(self):
-        pygame.mixer.init()
-        self.main_theme()
+        self.live_down_sound = pygame.mixer.Sound(consts.LIVE_DOWN)
 
 
     def main_theme(self):
@@ -17,8 +13,11 @@ class Sound():
 
 
     def shoot(self):
-
         self.shot.play(0)
+
+
+    def live_down(self):
+        self.live_down_sound.play(0)
 
 
     def explosion(self):

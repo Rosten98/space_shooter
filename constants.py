@@ -25,6 +25,7 @@ FIVE = './assets/images/UI/numeral5.png'
 NUMBERS = [ZERO, ONE, TWO, THREE, FOUR, FIVE]
 
 # SOUND PATHS
+LIVE_DOWN = './assets/sounds/sfx_shieldDown.ogg'
 LASER1 = './assets/sounds/sfx_laser1.ogg'
 EXPLOSION = './assets/sounds/explosion.ogg'
 MAIN_THEME = './assets/sounds/main_theme.ogg'

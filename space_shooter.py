@@ -55,9 +55,8 @@ pygame.time.set_timer(ADDENEMY, 500)
 player = Player()
 enemies = []
 sound = Sound()
-sound.init_mixer()
+sound.main_theme()
 clock = pygame.time.Clock()
-
 
 running = True
 while running:
@@ -98,6 +97,7 @@ while running:
     for enemy in enemies:
         if pygame.sprite.collide_mask(player, enemy):
             if player.lives > 0:
+                sound.live_down()
                 enemy.rect.move_ip((0, -1000))
                 player.lives -= 1
             else:
@@ -108,9 +108,10 @@ while running:
                 sound.explosion()
                 enemy.rect.move_ip((0, -1000))
                 bullet.rect.move_ip((0, -1000))
-                # enemy.kill()
+                enemy.kill()
+                bullet.kill()
 
     pygame.display.flip()
     clock.tick(30)
 
-sound.quit_mixer()
+pygame.quit()
