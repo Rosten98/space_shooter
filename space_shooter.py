@@ -32,8 +32,17 @@ def draw_bullet_counter():
     # screen.blit(textsurface,(40,5))
 
     screen.blit(bullets_img, (0, 0))
-    screen.blit(number, (40, 10))
     screen.blit(x, (15, 10))
+    screen.blit(number, (40, 10))
+
+def draw_lives_counter():
+    player_life = pygame.image.load(consts.PLAYER_SHIP3_LIFE)
+    x = pygame.image.load(consts.X)
+    number = pygame.image.load(consts.NUMBERS[player.lives])
+
+    screen.blit(player_life, (100, 10))
+    screen.blit(x, (140, 10))
+    screen.blit(number, (165, 10))
 
 
 pygame.init()
@@ -68,6 +77,7 @@ while running:
     # Draw background image
     draw_background()
     draw_bullet_counter()
+    draw_lives_counter()
     # Get last pressed key event
     pressed_keys = pygame.key.get_pressed()
 
@@ -87,8 +97,12 @@ while running:
     # Check collisions with enemies
     for enemy in enemies:
         if pygame.sprite.collide_mask(player, enemy):
-            player.kill()
-            running = False
+            if player.lives > 0:
+                enemy.rect.move_ip((0, -1000))
+                player.lives -= 1
+            else:
+                player.kill()
+                running = False
         for bullet in player.bullets:
             if pygame.sprite.collide_mask(bullet, enemy):
                 sound.explosion()

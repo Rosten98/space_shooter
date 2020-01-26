@@ -5,6 +5,7 @@ SCREEN_HEIGHT = 720
 BG_BLUE = './assets/images/blue.png'
 PLAYER_SHIP1 = './assets/images/playerShip1_blue.png'
 PLAYER_SHIP3 = './assets/images/playerShip3_blue.png'
+PLAYER_SHIP3_LIFE = './assets/images/playerLife3_blue.png'
 PLAYER_BULLET1 = './assets/images/laserBlue01.png'
 
 ENEMY_METEOR1 = './assets/images/enemies/meteorBrown_big1.png'

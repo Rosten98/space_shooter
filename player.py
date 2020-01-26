@@ -18,6 +18,7 @@ class Player(pygame.sprite.Sprite):
         self.rect = self.surf.get_rect()
         self.mask = pygame.mask.from_surface(self.surf)
         self.speed = 5
+        self.lives = 3
         self.wait_bullet = False
         self.time_bullet = 0
         self.waiting_time = 200 # miliseconds
