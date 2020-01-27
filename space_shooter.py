@@ -14,6 +14,5 @@ running = True
 game = game.Game(screen, sound, clock, running)
 
 while running:
-    running = game.start()
-
+    running = game.run()
 pygame.quit()

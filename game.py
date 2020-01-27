@@ -13,13 +13,15 @@ class Game():
         self.screen = screen
         self.sound = sound
         self.clock = clock
+        # self.time_elapsed = 0
+        # self.last_time = self.time_elapsed
+        self.difficulty = 500
         self.running = running
         self.player = Player()
         self.enemies = []
         # Create a custom event for adding a new enemy
         self.ADDENEMY = pygame.USEREVENT + 1
-        pygame.time.set_timer(self.ADDENEMY, 500)
-
+        pygame.time.set_timer(self.ADDENEMY, self.difficulty)
 
     def draw_background(self):
         background = pygame.image.load(consts.BG_BLUE).convert()
@@ -58,14 +60,27 @@ class Game():
         self.screen.blit(number, (165, 10))
 
 
-    def start(self):
+    # def set_difficulty(self):
+    #     self.time_elapsed = self.clock.get_time()
+    #     print(self.time_elapsed)
+    #     print(self.last_time)
+    #     if self.last_time >= self.time_elapsed + 1000:
+    #         self.last_time = self.time_elapsed
+    #         if self.difficulty >= 100:
+    #             self.difficulty -= 100
+    #             pygame.time.set_timer(self.ADDENEMY, self.difficulty)
+
+
+    def run(self):
         # Check events in game
         for event in pygame.event.get():
             if event.type == KEYDOWN:
                 if event.key == K_ESCAPE:
-                    pygame.quit()
+                    # pygame.quit()
+                    self.running = False
             elif event.type == QUIT:
-                pygame.quit()
+                # pygame.quit()
+                self.running = False
             elif event.type == self.ADDENEMY:
                 new_enemy = Enemy()
                 self.enemies.append(new_enemy)
@@ -109,12 +124,8 @@ class Game():
                     enemy.kill()
                     bullet.kill()
 
+
         pygame.display.flip()
         self.clock.tick(30)
-        # self.check_running()
+        # self.set_difficulty()
         return self.running
-
-
-    # def check_running(self):
-    #     self.running = True if self.running else False
-    #     return self.running
