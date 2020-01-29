@@ -31,4 +31,5 @@ EXPLOSION = './assets/sounds/explosion.ogg'
 MAIN_THEME = './assets/sounds/main_theme.ogg'
 
 # FONTS
-FONT = './assets/fonts/kenvector_future_thin.ttf'
+FONT = './assets/fonts/kenvector_future.ttf'
+FONT_THIN = './assets/fonts/kenvector_future_thin.ttf'

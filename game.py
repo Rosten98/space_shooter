@@ -9,14 +9,13 @@ from pygame.locals import (
 )
 
 class Game():
-    def __init__(self, screen, sound, clock, running):
+    def __init__(self, screen, sound, clock):
         self.screen = screen
         self.sound = sound
         self.clock = clock
         # self.time_elapsed = 0
         # self.last_time = self.time_elapsed
         self.difficulty = 500
-        self.running = running
         self.player = Player()
         self.enemies = []
         # Create a custom event for adding a new enemy
@@ -72,60 +71,59 @@ class Game():
 
 
     def run(self):
-        # Check events in game
-        for event in pygame.event.get():
-            if event.type == KEYDOWN:
-                if event.key == K_ESCAPE:
-                    # pygame.quit()
-                    self.running = False
-            elif event.type == QUIT:
-                # pygame.quit()
-                self.running = False
-            elif event.type == self.ADDENEMY:
-                new_enemy = Enemy()
-                self.enemies.append(new_enemy)
+        running = True
+        while running:
+            # Check events in game
+            for event in pygame.event.get():
+                if event.type == KEYDOWN:
+                    if event.key == K_ESCAPE:
+                        running = False
+                elif event.type == QUIT:
+                    running = False
+                elif event.type == self.ADDENEMY:
+                    new_enemy = Enemy()
+                    self.enemies.append(new_enemy)
 
-        self.screen.fill((0, 0, 0))
-        # Draw background image
-        self.draw_background()
-        self.draw_bullet_counter()
-        self.draw_lives_counter()
-        # Get last pressed key event
-        pressed_keys = pygame.key.get_pressed()
+            self.screen.fill((0, 0, 0))
+            # Draw background image
+            self.draw_background()
+            self.draw_bullet_counter()
+            self.draw_lives_counter()
+            # Get last pressed key event
+            pressed_keys = pygame.key.get_pressed()
 
-        # Update position of player, enemies and bullets
-        self.player.update(pressed_keys)
+            # Update position of player, enemies and bullets
+            self.player.update(pressed_keys)
 
-        for bullet in self.player.bullets:
-            bullet.update(self.player.rect.copy(), self.player.surf.get_size())
-            self.screen.blit(bullet.surf, bullet.rect)
-
-        self.screen.blit(self.player.surf, self.player.rect)
-
-        for enemy in self.enemies:
-            enemy.update()
-            self.screen.blit(enemy.surf, enemy.rect)
-
-        # Check collisions with enemies
-        for enemy in self.enemies:
-            if pygame.sprite.collide_mask(self.player, enemy):
-                if self.player.lives > 0:
-                    self.sound.live_down()
-                    enemy.rect.move_ip((0, -1000))
-                    self.player.lives -= 1
-                else:
-                    self.player.kill()
-                    self.running = False
             for bullet in self.player.bullets:
-                if pygame.sprite.collide_mask(bullet, enemy):
-                    self.sound.explosion()
-                    enemy.rect.move_ip((0, -1000))
-                    bullet.rect.move_ip((0, -1000))
-                    enemy.kill()
-                    bullet.kill()
+                bullet.update(self.player.rect.copy(), self.player.surf.get_size())
+                self.screen.blit(bullet.surf, bullet.rect)
+
+            self.screen.blit(self.player.surf, self.player.rect)
+
+            for enemy in self.enemies:
+                enemy.update()
+                self.screen.blit(enemy.surf, enemy.rect)
+
+            # Check collisions with enemies
+            for enemy in self.enemies:
+                if pygame.sprite.collide_mask(self.player, enemy):
+                    if self.player.lives > 0:
+                        self.sound.live_down()
+                        enemy.rect.move_ip((0, -1000))
+                        self.player.lives -= 1
+                    else:
+                        self.player.kill()
+                        running = False
+                for bullet in self.player.bullets:
+                    if pygame.sprite.collide_mask(bullet, enemy):
+                        self.sound.explosion()
+                        enemy.rect.move_ip((0, -1000))
+                        bullet.rect.move_ip((0, -1000))
+                        enemy.kill()
+                        bullet.kill()
 
 
-        pygame.display.flip()
-        self.clock.tick(30)
-        # self.set_difficulty()
-        return self.running
+            pygame.display.flip()
+            self.clock.tick(30)
+            # self.set_difficulty()
