@@ -33,3 +33,9 @@ MAIN_THEME = './assets/sounds/main_theme.ogg'
 # FONTS
 FONT = './assets/fonts/kenvector_future.ttf'
 FONT_THIN = './assets/fonts/kenvector_future_thin.ttf'
+
+# UI
+BTN_BLUE = './assets/images/UI/buttonBlue.png'
+BTN_GREEN = './assets/images/UI/buttonGreen.png'
+BTN_RED = './assets/images/UI/buttonRed.png'
+BTN_YELLOW = './assets/images/UI/buttonYellow.png'
