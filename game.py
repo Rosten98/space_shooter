@@ -79,6 +79,7 @@ class Game():
                     if event.key == K_ESCAPE:
                         running = False
                 elif event.type == QUIT:
+                    self.sound.quit_mixer()
                     running = False
                 elif event.type == self.ADDENEMY:
                     new_enemy = Enemy()
@@ -87,8 +88,7 @@ class Game():
             self.screen.fill((0, 0, 0))
             # Draw background image
             self.draw_background()
-            self.draw_bullet_counter()
-            self.draw_lives_counter()
+
             # Get last pressed key event
             pressed_keys = pygame.key.get_pressed()
 
@@ -114,6 +114,7 @@ class Game():
                         self.player.lives -= 1
                     else:
                         self.player.kill()
+                        self.sound.quit_mixer()
                         running = False
                 for bullet in self.player.bullets:
                     if pygame.sprite.collide_mask(bullet, enemy):
@@ -123,6 +124,9 @@ class Game():
                         enemy.kill()
                         bullet.kill()
 
+            pygame.draw.rect(self.screen, (0,0,0), (0,0, consts.SCREEN_WIDTH, 50))
+            self.draw_bullet_counter()
+            self.draw_lives_counter()
 
             pygame.display.flip()
             self.clock.tick(30)

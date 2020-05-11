@@ -8,10 +8,10 @@ from game import Game
 pygame.init()
 screen = pygame.display.set_mode((consts.SCREEN_WIDTH, consts.SCREEN_HEIGHT))
 
-sound = Sound()
+# sound = Sound()
 clock = pygame.time.Clock()
 
-game = Game(screen, sound, clock)
+# game = Game(screen, sound, clock)
 font = pygame.font.SysFont(consts.FONT, 30)
 
 def draw_text(text, font, color, surface, position):
@@ -32,7 +32,6 @@ def draw_background():
         for idx in range(round(consts.SCREEN_HEIGHT / bg_h + 1)):
             y = 0 + bg_h * idx
             screen.blit(background, (x, y))
-
 def main_menu():
     running = True
     btn_1 = pygame.image.load(consts.BTN_BLUE)
@@ -41,6 +40,7 @@ def main_menu():
     btn_1_rect = btn_1.get_rect()
     btn_1_rect.center = (screen.get_width() / 2, screen.get_height() / 2 - 100)
     btn_2_rect.center = (screen.get_width() / 2, screen.get_height() / 2)
+    click = False
 
     while running:
         screen.fill((0,0,0))
@@ -48,7 +48,10 @@ def main_menu():
         mx, my = pygame.mouse.get_pos()
         if btn_1_rect.collidepoint((mx, my)):
             if click:
+                sound = Sound()
                 sound.main_theme()
+
+                game = Game(screen, sound, clock)
                 game.run()
         if btn_2_rect.collidepoint((mx, my)):
             if click:
